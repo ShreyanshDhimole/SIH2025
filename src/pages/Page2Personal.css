@@ -1,0 +1,193 @@
+/* Page2Personal.css */
+
+/* Outer layout */
+.container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Big rounded full-width panel */
+.full-panel {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 6px 20px rgba(20,50,100,0.06);
+  border: 1px solid rgba(12,40,90,0.04);
+}
+
+/* Header */
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 12px;
+}
+.panel-title {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  gap: 10px;
+  font-weight: 600;
+  color: #0f1724;
+}
+.panel-sub {
+  font-size: 13px;
+  color: #6b7280;
+}
+.header-deco {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* GRID */
+.panel-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 18px;
+}
+
+/* Card Base */
+.panel-card {
+  background: #fbfdff;
+  border-radius: 10px;
+  padding: 18px;
+  border: 1px solid rgba(15, 40, 70, 0.05);
+  box-shadow: 0 2px 6px rgba(15,40,70,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  grid-column: span 4;
+  min-height: 100%;
+}
+
+/* WIDE card — same width as Page3 wide cards (spans 8 columns) */
+.panel-card--wide {
+  grid-column: span 8;
+}
+
+/* INFO card */
+.panel-card--info {
+  grid-column: span 4;
+}
+
+/* Heading inside cards */
+.card-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(10,30,60,0.06);
+  font-size: 15px;
+  font-weight: 600;
+  color: #0b2540;
+}
+
+/* emoji / icons */
+.heading-emoji {
+  font-size: 18px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Two column group (PIN + Aadhaar) */
+.two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* Selfie Preview */
+.selfie-preview {
+  margin-top: 8px;
+}
+.selfie-img {
+  width: 100%;
+  max-width: 360px;
+  border-radius: 10px;
+  border: 1px solid rgba(14,90,180,0.08);
+  object-fit: cover;
+}
+
+/* Add space for OBC upload block */
+.obc-upload-block {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(10,30,60,0.06);
+}
+
+/* Small helper text */
+.muted {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Error text */
+.field-error {
+  font-size: 13px;
+  color: #dc2626;
+}
+
+/* Action buttons row */
+.panel-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+.btn-secondary {
+  background: #f3f6fb;
+  color: #0b2540;
+}
+.btn-primary {
+  background: #0b63ff;
+  color: white;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+  .panel-grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+  .panel-card {
+    grid-column: span 8;
+  }
+  .panel-card--wide {
+    grid-column: span 8;
+  }
+  .panel-card--info {
+    grid-column: span 8;
+  }
+}
+
+@media (max-width: 700px) {
+  .panel-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .panel-card,
+  .panel-card--wide,
+  .panel-card--info {
+    grid-column: span 1;
+  }
+  .panel-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+  .btn {
+    width: 100%;
+  }
+}

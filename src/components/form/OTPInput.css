@@ -1,0 +1,73 @@
+/* OTPInput.css */
+
+/* wrapper */
+.otp-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+/* send OTP button */
+.otp-btn {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #d6e2f5;
+  background: #eef4ff;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #0b63ff;
+  transition: 0.2s;
+}
+
+.otp-btn:hover {
+  background: #e2ecff;
+}
+
+/* row with OTP input + verify btn */
+.otp-input-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* OTP input box */
+.otp-input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d3ddf0;
+  background: #f9fbff;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s all;
+}
+
+.otp-input:focus {
+  border-color: #0b63ff;
+  background: #ffffff;
+}
+
+/* verify button */
+.otp-verify-btn {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  background: #0b63ff;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.otp-verify-btn:hover {
+  background: #004ad9;
+}
+
+/* message */
+.otp-msg {
+  font-size: 13px;
+  margin-top: 2px;
+  color: #50607c;
+}

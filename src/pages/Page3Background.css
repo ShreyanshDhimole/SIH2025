@@ -1,0 +1,148 @@
+/* Page3Background.css - mixed packed grid with consistent spacing */
+
+/* container */
+.container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 18px;
+}
+
+/* full panel */
+.full-panel {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 6px 20px rgba(20,50,100,0.06);
+  border: 1px solid rgba(12,40,90,0.04);
+}
+
+/* header */
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #0f1724;
+}
+.panel-sub {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* MIXED GRID: 12 columns, dense packing and fixed row base to avoid empty gaps */
+.panel-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 18px;
+  grid-auto-rows: minmax(90px, auto);     /* base row height */
+  grid-auto-flow: dense;                  /* pack items tightly to avoid holes */
+  align-items: start;
+}
+
+/* default card (span classes control width) */
+.panel-card {
+  background: #fbfdff;
+  border-radius: 10px;
+  padding: 14px;
+  border: 1px solid rgba(15, 40, 70, 0.04);
+  box-shadow: 0 2px 6px rgba(15,40,70,0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-self: stretch; /* stretch to fill row */
+}
+
+/* width spans (change these to remix the layout) */
+.panel-card--span4 { grid-column: span 4; }
+.panel-card--span6 { grid-column: span 6; }
+.panel-card--span8 { grid-column: span 8; }
+.panel-card--span12 { grid-column: span 12; }
+
+/* taller cards (span multiple implicit rows) */
+.panel-card--tall { grid-row: span 2; }
+
+/* heading style */
+.card-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #0b2540;
+  border-bottom: 1px solid rgba(10,30,60,0.04);
+  padding-bottom: 8px;
+}
+
+/* emoji/icon sizing */
+.heading-emoji {
+  font-size: 18px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* info content */
+.info-content {
+  font-size: 13px;
+  color: #4b5563;
+}
+.muted {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+/* actions */
+.panel-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+/* buttons */
+.btn {
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+.btn-secondary {
+  background: #f3f6fb;
+  color: #0b2540;
+}
+.btn-primary {
+  background: #0b63ff;
+  color: white;
+}
+
+/* RESPONSIVE: collapse columns progressively */
+@media (max-width: 1100px) {
+  .panel-grid { grid-template-columns: repeat(8, 1fr); }
+  .panel-card--span4 { grid-column: span 4; }
+  .panel-card--span6 { grid-column: span 6; }
+  .panel-card--span8 { grid-column: span 8; }
+}
+@media (max-width: 800px) {
+  .panel-grid { grid-template-columns: repeat(6, 1fr); }
+  .panel-card--span4 { grid-column: span 6; } /* full width in smaller break */
+  .panel-card--span6 { grid-column: span 6; }
+  .panel-card--span8 { grid-column: span 6; }
+}
+@media (max-width: 500px) {
+  .panel-grid { grid-template-columns: repeat(1, 1fr); }
+  .panel-card--span4,
+  .panel-card--span6,
+  .panel-card--span8,
+  .panel-card--span12 { grid-column: span 1; }
+  .panel-card--tall { grid-row: auto; } /* don't force multiple rows on tiny screens */
+}

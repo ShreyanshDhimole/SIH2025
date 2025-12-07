@@ -1,0 +1,199 @@
+/* src/components/Stepper/Stepper.css
+   Finalized, themeable, responsive stepper CSS with perfectly centered dotted connector
+*/
+
+/* Theme variables (adjust as needed) */
+:root{
+  --bg: #ffffff;
+  --muted-bg: #f3f4f6;
+  --muted-border: #e6eefb;
+  --muted-text: #9aa3b2;
+  --text: #475569;
+  --accent: #0b63ff;
+  --accent-weak: rgba(11,99,255,0.06);
+  --done-bg: var(--accent);
+  --done-color: #ffffff;
+  --circle-size: 36px;
+  --connector-height: 4px;
+  --transition: 220ms ease;
+}
+
+/* wrapper sitting inside panel */
+.stepper-wrap {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  margin-bottom: 6px;
+}
+
+/* horizontal list that stretches across container */
+.stepper-line-wrap {
+  display: flex;
+  align-items: flex-start;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  gap: 0;
+}
+
+/* each step: equal width so spacing is even */
+.stepper-item {
+  flex: 1 1 0;
+  min-width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 6px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+/* node row: circle centered, connector drawn behind */
+.stepper-node {
+  width: 100%;
+  height: var(--circle-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* circle style */
+.step-circle {
+  width: var(--circle-size);
+  height: var(--circle-size);
+  border-radius: 50%;
+  background: var(--muted-bg);
+  color: #6b7280;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border: 2px solid var(--muted-border);
+  z-index: 3;
+  transition: all var(--transition);
+  margin: 0;
+  flex: 0 0 var(--circle-size);
+  user-select: none;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* active and done states */
+.step-circle.active {
+  background: var(--bg);
+  color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-weak);
+}
+.step-circle.done {
+  background: var(--done-bg);
+  color: var(--done-color);
+  border-color: var(--done-bg);
+}
+
+/* --- CONNECTOR PERFECT ALIGNMENT --- */
+/* connector sits BEHIND the circles, fully centered between circle centers */
+.connector {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: calc(50% + (var(--circle-size) / 2));   /* start from center-right of current circle */
+  right: calc(-50% + (var(--circle-size) / 2)); /* end at center-left of next circle */
+  height: var(--connector-height);
+  border-radius: 4px;
+  z-index: 1;
+  transition: all var(--transition);
+}
+
+/* DONE = full solid line */
+.connector-done {
+  background: var(--accent);
+}
+
+/* ACTIVE = dotted line (centered and consistent) */
+.connector-active {
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(11,99,255,0.85) 0px 6px,
+    rgba(11,99,255,0.0) 6px 10px
+  );
+}
+
+/* FUTURE = muted line */
+.connector-future {
+  background: var(--muted-border);
+}
+
+/* hide last connector */
+.stepper-item:last-child .connector {
+  display: none;
+}
+
+/* label below circle */
+.stepper-label {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  padding: 0 6px;
+}
+
+/* optional small subtext (approx time) */
+.stepper-sub {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+/* visual differences for future steps */
+.stepper-item.future .step-circle {
+  background: var(--bg);
+  color: var(--muted-text);
+  border-color: var(--muted-border);
+}
+.stepper-item.future .stepper-label {
+  color: var(--muted-text);
+}
+
+/* Focus states for accessibility */
+.stepper-item:focus-within .step-circle,
+.stepper-item:focus .step-circle {
+  box-shadow: 0 0 0 6px rgba(11,99,255,0.08);
+  outline: none;
+}
+
+/* responsive: horizontal scroll on small screens */
+@media (max-width: 760px) {
+  .stepper-line-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+    padding-bottom: 8px;
+  }
+  .stepper-item {
+    min-width: 140px;
+    padding: 10px;
+  }
+  .stepper-label { font-size: 12px; }
+  .stepper-sub { font-size: 11px; }
+}
+
+/* connectors on first/last */
+.stepper-item:first-child .connector { left: calc(55% + (var(--circle-size) / 2)); }
+.stepper-item:last-child .connector { display: none; }
+
+/* OPTIONAL: if you used the 3D backdrop earlier and want to hide the bar */
+.stepper-3d-backdrop {
+  display: none !important;
+}
+
+/* small improvements for touch devices: larger hit area */
+@media (hover: none) and (pointer: coarse) {
+  :root { --circle-size: 44px; }
+  .stepper-label { font-size: 13px; }
+}
